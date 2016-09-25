@@ -12,7 +12,7 @@ SRC_O		=	$(TMP_SRC_C:.c=.o)
 all: includes libs $(NAME)
 
 $(NAME): $(SRC_O)
-	gcc -o $(NAME) $(SRC_O) -I./includes
+	gcc -o $(NAME) $(SRC_O) $(LIBS) -I./includes
 
 includes: $(INCLUDES)
 includes/libft.h:
