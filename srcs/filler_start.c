@@ -7,7 +7,6 @@ static void	get_piece(t_filler *filler)
 
 	i = 0;
 	get_next_line(0, &filler->piece_init);
-	ft_putstr_fd(filler->piece_init, 2);
 	while (filler->piece_init[i] != ' ')
 		++i;
 	filler->py = ft_atoi(filler->piece_init + ++i);
@@ -21,50 +20,57 @@ static void	get_piece(t_filler *filler)
 		str_array_add(&filler->piece, buf);
 		++i;
 	}
-	ft_putstr_fd("displaying piece\n", 2);
-	i = 0;
-	while (filler->piece[i])
-	{
-		ft_putstr_fd(filler->piece[i], 2);
-		ft_putchar_fd('\n', 2);
-		++i;
-	}
-	ft_putstr_fd("END==\n", 2);
 }
 
-static void	get_board(t_filler *filler)
+static int	get_board(t_filler *filler)
 {
 	int		i;
 	char	*buf;
+	int		ret;
 
 	i = 0;
-	get_next_line(0, &filler->board_init);
-	while (filler->board_init[i] != ' ')
-		++i;
-	filler->y = ft_atoi(filler->board_init + ++i);
-	while (filler->board_init[i] != ' ')
-		++i;
-	filler->x = ft_atoi(filler->board_init + ++i);
-	i = 0;
-	while (i <= filler->y)
+	ret = get_next_line(0, &filler->board_init);
+	if (ret > 0)
 	{
-		get_next_line(0, &buf);
-		str_array_add(&filler->board, buf);
-		++i;
+		while (filler->board_init[i] != ' ')
+			++i;
+		filler->y = ft_atoi(filler->board_init + ++i);
+		while (filler->board_init[i] != ' ')
+			++i;
+		filler->x = ft_atoi(filler->board_init + ++i);
+		i = 0;
+		while (i <= filler->y)
+		{
+			get_next_line(0, &buf);
+			str_array_add(&filler->board, buf);
+			++i;
+		}
 	}
-	ft_putstr_fd("displaying board\n", 2);
-	i = 0;
-	while (filler->board[i])
-	{
-		ft_putstr_fd(filler->board[i], 2);
-		ft_putchar_fd('\n', 2);
-		++i;
-	}
-	ft_putstr_fd("END==\n", 2);
+	return (ret);
 }
 
 void	filler_start(t_filler *filler)
 {
-	get_board(filler);
-	get_piece(filler);
+	char	*str1;
+	char	*str2;
+	char	*str3;
+	char	exit;
+
+	exit = 1;
+	while (exit)
+	{
+		if (get_board(filler) > 0)
+		{
+			get_piece(filler);
+			exit = backtrack(filler);
+			str1 = ft_strjoin(ft_itoa(filler->cy), " ");
+			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
+			str3 = ft_strjoin(str2, "\n");
+			str_array_del(&filler->board);
+			str_array_del(&filler->piece);
+			filler->board = str_array_new();
+			filler->piece = str_array_new();
+			ft_putstr(str3);
+		}
+	}
 }

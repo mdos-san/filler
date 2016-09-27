@@ -17,9 +17,12 @@ typedef struct	s_filler
 	int			px;
 	int			py;
 	char		**piece;
+	int			cx;
+	int			cy;
 }				t_filler;
 
 t_filler	filler_init(void);
 void		filler_start(t_filler *filler);
+int			backtrack(t_filler *filler);
 
 #endif
