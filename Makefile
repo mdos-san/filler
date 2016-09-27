@@ -5,7 +5,8 @@ INCLUDES	=	includes/libft.h
 LIBS		=	libft.a
 
 TMP_SRC_C	=	main.c\
-				filler_init.c
+				filler_init.c\
+				filler_start.c
 SRC_C		=	$(TMP_SRC_C:%=srcs/%)
 SRC_O		=	$(TMP_SRC_C:.c=.o)
 
