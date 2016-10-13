@@ -40,6 +40,7 @@ int	backtrack(t_filler *filler)
 	x = 0;
 	filler->cx = 0;
 	filler->cy = 0;
+	ft_putstr_fd("COUCOU\n", 2);
 	while (x + filler->px - 1 < filler->x)
 	{
 		y = 0;
