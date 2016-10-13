@@ -20,7 +20,6 @@ static int	check(t_filler *filler, int x, int y)
 	char	c;
 	char	p;
 
-
 	tx = 0;
 	connected = 0;
 	while (tx < filler->px && tx + x < filler->x)
