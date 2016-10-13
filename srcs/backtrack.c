@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   backtrack.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/10/13 16:26:44 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/13 16:33:04 by mdos-san         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 static int	check(t_filler *filler, int x, int y)
@@ -32,7 +44,7 @@ static int	check(t_filler *filler, int x, int y)
 		return (0);
 }
 
-int	backtrack(t_filler *filler)
+int			backtrack(t_filler *filler)
 {
 	int	x;
 	int	y;
@@ -40,7 +52,6 @@ int	backtrack(t_filler *filler)
 	x = 0;
 	filler->cx = 0;
 	filler->cy = 0;
-	ft_putstr_fd("COUCOU\n", 2);
 	while (x + filler->px - 1 < filler->x)
 	{
 		y = 0;
