@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 13:58:04 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/14 13:58:06 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/14 16:23:02 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	check(t_filler *filler, int x, int y)
 
 	tx = 0;
 	connected = 0;
+	if (!(0 <= x && x < filler->x) || !(0 <= y && y < filler->y))
+		return (0);
 	while (tx < filler->px && tx + x < filler->x)
 	{
 		ty = 0;
@@ -32,12 +34,14 @@ int	check(t_filler *filler, int x, int y)
 			if ((c == filler->p || c == filler->p - 32) && p == '*')
 				++connected;
 			else if (c != '.' && p == '*')
+			{
 				return (0);
+			}
 			++ty;
 		}	
 		++tx;
 	}
-	if (connected == 1)
+	if (connected == 1 && tx + x < filler->x && ty + y < filler->y)
 		return (1);
 	else
 		return (0);

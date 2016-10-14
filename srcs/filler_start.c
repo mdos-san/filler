@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/13 16:26:36 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/14 15:50:38 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,24 @@ static void	find_en_start(t_filler *filler)
 		x = 0;
 		while (x < filler->x)
 		{
-			if (filler->board[y][x] != filler->p && filler->board[y][x] != '.')
+			if (filler->board[y + OFF_Y][x + OFF_X] != filler->p - 32
+				&& filler->board[y + OFF_Y][x + OFF_X] != filler->p
+				&& filler->board[y + OFF_Y][x + OFF_X] != '.')
 			{
 				filler->en_start.x = x;
 				filler->en_start.y = y;
-				filler->done = 1;
+				ft_putstr_fd("\n", 2);
+				ft_putstr_fd("en_x: \n", 2);
+				ft_putnbr_fd(x, 2);
+				ft_putstr_fd("en_y: \n", 2);
+				ft_putnbr_fd(y, 2);
+				ft_putstr_fd("\n", 2);
 			}
 			++x;
 		}
 		++y;
 	}
+	filler->done = 1;
 }
 
 static void	get_piece(t_filler *filler)
@@ -100,7 +108,7 @@ void	filler_start(t_filler *filler)
 		if (get_board(filler) > 0)
 		{
 			get_piece(filler);
-			exit = find_by_distance(filler, 0);
+			exit = find_by_distance(filler, 1);
 			(exit) ? ft_putstr_fd("dist\n", 2): ft_putstr_fd("back", 2);
 			exit = (exit == 0) ? backtrack(filler) : 1;
 			str1 = ft_strjoin(ft_itoa(filler->cy), " ");
