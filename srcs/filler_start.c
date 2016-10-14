@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/14 15:50:38 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/14 18:03:38 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,10 @@ static int	get_board(t_filler *filler)
 		{
 			get_next_line(0, &buf);
 			str_array_add(&filler->board, buf);
+			if (i > 0)
+			{
+				str_array_add(&filler->territory, buf + 4);
+			}
 			++i;
 		}
 		if (!filler->done)
@@ -107,6 +111,7 @@ void	filler_start(t_filler *filler)
 	{
 		if (get_board(filler) > 0)
 		{
+			territory_control(filler);
 			get_piece(filler);
 			exit = find_by_distance(filler, 1);
 			(exit) ? ft_putstr_fd("dist\n", 2): ft_putstr_fd("back", 2);
@@ -115,8 +120,10 @@ void	filler_start(t_filler *filler)
 			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
 			str3 = ft_strjoin(str2, "\n");
 			str_array_del(&filler->board);
+			str_array_del(&filler->territory);
 			str_array_del(&filler->piece);
 			filler->board = str_array_new();
+			filler->territory = str_array_new();
 			filler->piece = str_array_new();
 			ft_putstr(str3);
 		}
