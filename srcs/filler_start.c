@@ -100,7 +100,9 @@ void	filler_start(t_filler *filler)
 		if (get_board(filler) > 0)
 		{
 			get_piece(filler);
-			exit = backtrack(filler);
+			exit = find_by_distance(filler, 0);
+			(exit) ? ft_putstr_fd("dist\n", 2): ft_putstr_fd("back", 2);
+			exit = (exit == 0) ? backtrack(filler) : 1;
 			str1 = ft_strjoin(ft_itoa(filler->cy), " ");
 			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
 			str3 = ft_strjoin(str2, "\n");
