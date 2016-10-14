@@ -4,6 +4,12 @@
 # define OFF_X 4
 # include "libft.h"
 
+typedef struct	s_pnt
+{
+	int	x;
+	int	y;
+}				t_pnt;
+
 typedef struct	s_filler
 {
 	int			log_fd;
@@ -19,6 +25,8 @@ typedef struct	s_filler
 	char		**piece;
 	int			cx;
 	int			cy;
+	t_pnt		en_start;
+	char		done;	
 }				t_filler;
 
 t_filler	filler_init(void);

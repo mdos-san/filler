@@ -12,6 +12,30 @@
 
 #include "filler.h"
 
+static void	find_en_start(t_filler *filler)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (y < filler->y)
+	{
+		x = 0;
+		while (x < filler->x)
+		{
+			if (filler->board[y][x] != filler->p && filler->board[y][x] != '.')
+			{
+				filler->en_start.x = x;
+				filler->en_start.y = y;
+				filler->done = 1;
+			}
+			++x;
+		}
+		++y;
+	}
+}
+
 static void	get_piece(t_filler *filler)
 {
 	int		i;
@@ -57,6 +81,8 @@ static int	get_board(t_filler *filler)
 			str_array_add(&filler->board, buf);
 			++i;
 		}
+		if (!filler->done)
+			find_en_start(filler);
 	}
 	return (ret);
 }

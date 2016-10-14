@@ -20,5 +20,8 @@ t_filler	filler_init(void)
 	new.p = (new.init[10] == '1') ? 'o' : 'x';
 	new.board = str_array_new();
 	new.piece = str_array_new();
+	new.done = 0;
+	new.en_start.x = 0;
+	new.en_start.y = 0;
 	return (new);
 }
