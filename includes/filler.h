@@ -33,6 +33,6 @@ t_filler	filler_init(void);
 void		filler_start(t_filler *filler);
 int			backtrack(t_filler *filler);
 int			check(t_filler *filler, int x, int y);
-int 		find_by_distance(t_filler *filler);
+int 		find_by_distance(t_filler *filler, int depth);
 
 #endif
