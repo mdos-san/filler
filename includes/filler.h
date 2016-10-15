@@ -19,7 +19,9 @@ typedef struct	s_filler
 	int			x;
 	int			y;
 	char		**board;
-	char		**territory;
+	char		**territory_o;
+	char		**territory_x;
+	char		**territory_r;
 	char		*piece_init;
 	int			px;
 	int			py;

@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/14 18:03:38 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/15 15:31:57 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ static int	get_board(t_filler *filler)
 			str_array_add(&filler->board, buf);
 			if (i > 0)
 			{
-				str_array_add(&filler->territory, buf + 4);
+				str_array_add(&filler->territory_o, buf + 4);
+				str_array_add(&filler->territory_x, buf + 4);
+				str_array_add(&filler->territory_r, buf + 4);
 			}
 			++i;
 		}
@@ -120,10 +122,14 @@ void	filler_start(t_filler *filler)
 			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
 			str3 = ft_strjoin(str2, "\n");
 			str_array_del(&filler->board);
-			str_array_del(&filler->territory);
+			str_array_del(&filler->territory_o);
+			str_array_del(&filler->territory_x);
+			str_array_del(&filler->territory_r);
 			str_array_del(&filler->piece);
 			filler->board = str_array_new();
-			filler->territory = str_array_new();
+			filler->territory_o = str_array_new();
+			filler->territory_x = str_array_new();
+			filler->territory_r = str_array_new();
 			filler->piece = str_array_new();
 			ft_putstr(str3);
 		}
