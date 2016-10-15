@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/15 18:30:21 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/15 19:01:09 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,38 +192,40 @@ void	territory_control(t_filler *filler)
 	int	j;
 
 	j = 0;
-	ft_putstr_fd("\n", 2);
+//	ft_putstr_fd("\n", 2);
 	clean(filler);
 	get_territory(filler);
 	count_territory(filler);
 	while (j < filler->y + 2)
 	{
-		ft_putstr_fd("|", 2);
+//		ft_putstr_fd("|", 2);
 		i = 0;
 		while (i < filler->x)
 		{
 			if (j == 0 || j == filler->y + 1)
-				ft_putchar_fd('-', 2);
+			{
+//				ft_putchar_fd('-', 2);
+			}
 			else if (j < filler->y + 1)
 			{
-				ft_putstr_fd(filler->territory_r[j - 1], 2);
+//				ft_putstr_fd(filler->territory_r[j - 1], 2);
 				break ;
 			}
 			++i;
 		}
-		ft_putstr_fd("|\n", 2);
+//		ft_putstr_fd("|\n", 2);
 		++j;
 	}
-	ft_putstr_fd("o: ", 2);
-	ft_putnbr_fd(filler->nbr_o, 2);
-	ft_putstr_fd("\nx: ", 2);
-	ft_putnbr_fd(filler->nbr_x, 2);
-	ft_putstr_fd("\nratio: ", 2);
+//	ft_putstr_fd("o: ", 2);
+//	ft_putnbr_fd(filler->nbr_o, 2);
+//	ft_putstr_fd("\nx: ", 2);
+//	ft_putnbr_fd(filler->nbr_x, 2);
+//	ft_putstr_fd("\nratio: ", 2);
 	filler->nbr_r = (filler->p == 'o')
 		? ((double)filler->nbr_o / (double)filler->nbr_x)
 		: ((double)filler->nbr_x / (double)filler->nbr_o);
 	filler->nbr_r *= 100;
 	filler->ratio = filler->nbr_r;
-	ft_putnbr_fd(filler->nbr_r, 2);
-	ft_putstr_fd("\n", 2);
+//	ft_putnbr_fd(filler->nbr_r, 2);
+//	ft_putstr_fd("\n", 2);
 }

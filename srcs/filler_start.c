@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/15 18:26:13 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/15 19:17:28 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ void	filler_start(t_filler *filler)
 			str3 = ft_strjoin(str2, "\n");
 			str_array_del(&filler->board);
 			str_array_del(&filler->piece);
-			ft_putstr_fd("\nsegv\n", 2);
 			filler->board = str_array_new();
 			filler->piece = str_array_new();
 			ft_putstr(str3);
