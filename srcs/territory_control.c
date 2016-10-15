@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/15 16:27:10 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/15 18:30:21 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,31 @@ static void	get_territory(t_filler *filler)
 	get_result(filler);
 }
 
+static void	count_territory(t_filler *filler)
+{
+	int	x;
+	int	y;
+	char	a;
+
+	y = 0;
+	filler->nbr_o = 0;
+	filler->nbr_x = 0;
+	while (y < filler->y)
+	{
+		x = 0;
+		while (x < filler->x)
+		{
+			a = filler->territory_r[y][x];
+			if (a == '1' || a == 'o' || a == 'O')	
+				filler->nbr_o++;
+			if (a == '2' || a == 'x' || a == 'X')	
+				filler->nbr_x++;
+			++x;
+		}
+		++y;
+	}
+}
+
 void	territory_control(t_filler *filler)
 {
 	int	i;
@@ -170,6 +195,7 @@ void	territory_control(t_filler *filler)
 	ft_putstr_fd("\n", 2);
 	clean(filler);
 	get_territory(filler);
+	count_territory(filler);
 	while (j < filler->y + 2)
 	{
 		ft_putstr_fd("|", 2);
@@ -188,4 +214,16 @@ void	territory_control(t_filler *filler)
 		ft_putstr_fd("|\n", 2);
 		++j;
 	}
+	ft_putstr_fd("o: ", 2);
+	ft_putnbr_fd(filler->nbr_o, 2);
+	ft_putstr_fd("\nx: ", 2);
+	ft_putnbr_fd(filler->nbr_x, 2);
+	ft_putstr_fd("\nratio: ", 2);
+	filler->nbr_r = (filler->p == 'o')
+		? ((double)filler->nbr_o / (double)filler->nbr_x)
+		: ((double)filler->nbr_x / (double)filler->nbr_o);
+	filler->nbr_r *= 100;
+	filler->ratio = filler->nbr_r;
+	ft_putnbr_fd(filler->nbr_r, 2);
+	ft_putstr_fd("\n", 2);
 }

@@ -19,15 +19,21 @@ typedef struct	s_filler
 	int			x;
 	int			y;
 	char		**board;
+	char		**board_tmp;
 	char		**territory_o;
 	char		**territory_x;
 	char		**territory_r;
+	int			nbr_o;
+	int			nbr_x;
+	double		nbr_r;
 	char		*piece_init;
 	int			px;
 	int			py;
 	char		**piece;
 	int			cx;
 	int			cy;
+	int			ratio;
+	int			max_ratio;
 	t_pnt		en_start;
 	char		done;	
 }				t_filler;
@@ -38,5 +44,6 @@ int			backtrack(t_filler *filler);
 int			check(t_filler *filler, int x, int y);
 int 		find_by_distance(t_filler *filler, int depth);
 void		territory_control(t_filler *filler);
+void		put(t_filler *filler, int x, int y);
 
 #endif
