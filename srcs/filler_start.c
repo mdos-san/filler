@@ -30,12 +30,6 @@ static void	find_en_start(t_filler *filler)
 			{
 				filler->en_start.x = x;
 				filler->en_start.y = y;
-				ft_putstr_fd("\n", 2);
-				ft_putstr_fd("en_x: \n", 2);
-				ft_putnbr_fd(x, 2);
-				ft_putstr_fd("en_y: \n", 2);
-				ft_putnbr_fd(y, 2);
-				ft_putstr_fd("\n", 2);
 			}
 			++x;
 		}
@@ -83,7 +77,7 @@ static int	get_board(t_filler *filler)
 			++i;
 		filler->x = ft_atoi(filler->board_init + ++i);
 		i = 0;
-		while (i <= filler->y)
+		while (i < filler->y + 1)
 		{
 			get_next_line(0, &buf);
 			if (i > 0)
@@ -110,6 +104,7 @@ void	filler_start(t_filler *filler)
 		{
 			get_piece(filler);
 			exit = backtrack(filler);
+			ft_putstr_fd("segv\n", 2);
 			str1 = ft_strjoin(ft_itoa(filler->cy), " ");
 			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
 			str3 = ft_strjoin(str2, "\n");

@@ -22,8 +22,6 @@ int	check(t_filler *filler, int x, int y)
 
 	tx = 0;
 	connected = 0;
-	if (!(0 <= x && x < filler->x) || !(0 <= y && y < filler->y))
-		return (0);
 	while (tx < filler->px && tx + x < filler->x)
 	{
 		ty = 0;
@@ -39,7 +37,7 @@ int	check(t_filler *filler, int x, int y)
 		}	
 		++tx;
 	}
-	if (connected == 1 && tx + x < filler->x && ty + y < filler->y)
+	if (connected == 1 && x + filler->px - 1 < filler->x && y + filler->py - 1 < filler->y)
 		return (1);
 	else
 		return (0);
