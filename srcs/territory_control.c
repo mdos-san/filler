@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/16 16:01:49 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/16 16:06:40 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ static void	clean(t_filler *filler)
 
 static void	control(t_filler *filler, int i, int j, char nb)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	int		rx;
+	int		ry;
 	char	a;
 	char	c;
 	char	stop;
-	int	depth;
+	int		depth;
 
 	stop = 0;
 	depth = 1;
@@ -49,17 +51,19 @@ static void	control(t_filler *filler, int i, int j, char nb)
 		while (y <= depth && !stop)
 		{
 			x = -depth;
+			ry = j + y;
 			while (x <= depth && !stop)
 			{
-				if (i + x >= 0 && j + y >= 0 && i + x < filler->x && j + y < filler->y)
+				rx = i + x;
+				if (rx >= 0 && ry >= 0 && rx < filler->x && ry < filler->y)
 				{
 					a = (nb == 1)
-						? filler->territory_o[j + y][i + x]
-						: filler->territory_x[j + y][i + x];
+						? filler->territory_o[ry][rx]
+						: filler->territory_x[ry][rx];
 					if (a == ' ')
 					{
-						(nb == 1) ? filler->territory_o[j + y][i + x] = nb + 48 : 0;
-						(nb == 2) ? filler->territory_x[j + y][i + x] = nb + 48 : 0;
+						(nb == 1) ? filler->territory_o[ry][rx] = nb + 48 : 0;
+						(nb == 2) ? filler->territory_x[ry][rx] = nb + 48 : 0;
 					}
 					else if (a == c || a == c - 32)
 						stop = 1;
