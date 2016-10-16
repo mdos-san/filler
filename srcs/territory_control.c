@@ -6,30 +6,11 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/16 18:19:34 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/16 18:26:47 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-static void	clean(t_filler *filler)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (j < filler->y)
-	{
-		i = 0;
-		while (i < filler->x)
-		{
-			if (filler->territory_r[j][i] == '.')
-				filler->territory_r[j][i] = ' ';
-			++i;
-		}
-		++j;
-	}
-}
 
 static void	control(t_filler *filler, int i, int j, char nb)
 {
@@ -62,14 +43,14 @@ static void	control(t_filler *filler, int i, int j, char nb)
 					if (rx >= 0 && ry >= 0 && rx < filler->x && ry < filler->y)
 					{
 						a = filler->territory_r[ry][rx];
-						if (a == ' ')
+						if (a == '.')
 						{
 							filler->territory_r[ry][rx] = nb + 48;
 						}
 						else if (a == c || a == lc)
 							stop = 1;
 						else if (a != nb + 48)
-							filler->territory_r[ry][rx] = ' ';
+							filler->territory_r[ry][rx] = '.';
 					}
 				}
 				++x;
@@ -137,7 +118,6 @@ void	territory_control(t_filler *filler)
 	int	j;
 
 	j = 0;
-	clean(filler);
 	get_territory(filler);
 	count_territory(filler);
 	filler->nbr_r = (filler->p == 'o')
