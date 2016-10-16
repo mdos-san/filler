@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/15 19:01:09 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/16 16:01:49 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,8 @@ static void	clean(t_filler *filler)
 		i = 0;
 		while (i < filler->x)
 		{
-			if (filler->territory_o[j][i] == '.')
-			{
-				filler->territory_o[j][i] = ' ';
-				filler->territory_x[j][i] = ' ';
+			if (filler->territory_r[j][i] == '.')
 				filler->territory_r[j][i] = ' ';
-			}
 			++i;
 		}
 		++j;
@@ -147,9 +143,9 @@ static void	count_territory(t_filler *filler)
 		{
 			a = filler->territory_r[y][x];
 			if (a == '1' || a == 'o' || a == 'O')	
-				filler->nbr_o++;
+				++filler->nbr_o;
 			if (a == '2' || a == 'x' || a == 'X')	
-				filler->nbr_x++;
+				++filler->nbr_x;
 			++x;
 		}
 		++y;
@@ -163,6 +159,8 @@ void	territory_control(t_filler *filler)
 
 	j = 0;
 	clean(filler);
+	str_array_cpy(filler->territory_o, filler->territory_r);
+	str_array_cpy(filler->territory_x, filler->territory_r);
 	get_territory(filler);
 	count_territory(filler);
 	filler->nbr_r = (filler->p == 'o')

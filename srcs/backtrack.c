@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:44 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/15 18:36:04 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/16 15:58:55 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int			backtrack(t_filler *filler)
 	filler->cx = 0;
 	filler->cy = 0;
 	filler->max_ratio = 0;
+	filler->board_tmp = str_array_dup(filler->board, 0);
+	filler->territory_o = str_array_dup(filler->board_tmp, 0);
+	filler->territory_x = str_array_dup(filler->board_tmp, 0);
+	filler->territory_r = str_array_dup(filler->board_tmp, 0);
 	while (x < filler->x)
 	{
 		y = 0;
@@ -30,11 +34,9 @@ int			backtrack(t_filler *filler)
 		{
 			if (check(filler, x, y))
 			{
-				filler->board_tmp = str_array_dup(filler->board, 0);
+				str_array_cpy(filler->board_tmp, filler->board);
 				put(filler, x, y);
-				filler->territory_o = str_array_dup(filler->board_tmp, 0);
-				filler->territory_x = str_array_dup(filler->board_tmp, 0);
-				filler->territory_r = str_array_dup(filler->board_tmp, 0);
+				str_array_cpy(filler->territory_r, filler->board_tmp);
 				territory_control(filler);
 				if (filler->ratio > filler->max_ratio)
 				{
@@ -43,14 +45,14 @@ int			backtrack(t_filler *filler)
 					filler->cy = y;
 					filler->max_ratio = filler->ratio;
 				}
-				str_array_del(&filler->territory_o);
-				str_array_del(&filler->territory_x);
-				str_array_del(&filler->territory_r);
-				str_array_del(&filler->board_tmp);
 			}
 			++y;
 		}
 		++x;
 	}
+	str_array_del(&filler->territory_o);
+	str_array_del(&filler->territory_x);
+	str_array_del(&filler->territory_r);
+	str_array_del(&filler->board_tmp);
 	return (!fail);
 }
