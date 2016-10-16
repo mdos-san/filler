@@ -6,7 +6,7 @@
 #    By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/23 12:59:09 by mdos-san          #+#    #+#              #
-#    Updated: 2016/09/19 11:24:11 by mdos-san         ###   ########.fr        #
+#    Updated: 2016/10/16 15:37:20 by mdos-san         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC_C=		ft_memset.c		ft_bzero.c		ft_memcpy.c\
 			str_array_new.c\
 			str_array_count.c\
 			str_array_dup.c\
+			str_array_cpy.c\
 			str_array_del.c\
 			str_array_add.c\
 			str_array_sub.c\
