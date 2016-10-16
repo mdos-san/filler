@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/16 16:06:40 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/16 18:19:34 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ static void	control(t_filler *filler, int i, int j, char nb)
 	int		ry;
 	char	a;
 	char	c;
+	char	lc;
 	char	stop;
 	int		depth;
 
 	stop = 0;
 	depth = 1;
 	c = (nb == 1) ? 'x' : 'o';
+	lc = c - 32;
 	while (stop == 0)
 	{
 		y = -depth;
@@ -54,19 +56,21 @@ static void	control(t_filler *filler, int i, int j, char nb)
 			ry = j + y;
 			while (x <= depth && !stop)
 			{
-				rx = i + x;
-				if (rx >= 0 && ry >= 0 && rx < filler->x && ry < filler->y)
+				if (x == -depth || x == depth || y == -depth || y == depth)
 				{
-					a = (nb == 1)
-						? filler->territory_o[ry][rx]
-						: filler->territory_x[ry][rx];
-					if (a == ' ')
+					rx = i + x;
+					if (rx >= 0 && ry >= 0 && rx < filler->x && ry < filler->y)
 					{
-						(nb == 1) ? filler->territory_o[ry][rx] = nb + 48 : 0;
-						(nb == 2) ? filler->territory_x[ry][rx] = nb + 48 : 0;
+						a = filler->territory_r[ry][rx];
+						if (a == ' ')
+						{
+							filler->territory_r[ry][rx] = nb + 48;
+						}
+						else if (a == c || a == lc)
+							stop = 1;
+						else if (a != nb + 48)
+							filler->territory_r[ry][rx] = ' ';
 					}
-					else if (a == c || a == c - 32)
-						stop = 1;
 				}
 				++x;
 			}
@@ -76,37 +80,10 @@ static void	control(t_filler *filler, int i, int j, char nb)
 	}
 }
 
-static void get_result(t_filler *filler)
-{
-	int	x;
-	int	y;
-	char a;
-	char b;
-
-	y = 0;
-	while (y < filler->y)
-	{
-		x = 0;
-		while (x < filler->x)
-		{
-			a = filler->territory_o[y][x];
-			b = filler->territory_x[y][x];
-			if (a == '1' && b == '2')
-				filler->territory_r[y][x] = ' ';
-			else if (a == '1' && b == ' ')
-				filler->territory_r[y][x] = '1';
-			else if (a == ' ' && b == '2')
-				filler->territory_r[y][x] = '2';
-			++x;
-		}
-		++y;
-	}
-}
-
 static void	get_territory(t_filler *filler)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	c;
 	char	a;
 	char	stop;
@@ -118,17 +95,15 @@ static void	get_territory(t_filler *filler)
 		i = 0;
 		while (i < filler->x)
 		{
-			a = filler->territory_o[j][i];
+			a = filler->territory_r[j][i];
 			if (a == 'o' || a == 'O')
 				control(filler, i, j, 1);
-			a = filler->territory_x[j][i];
-			if (a == 'x' || a == 'X')
+			else if (a == 'x' || a == 'X')
 				control(filler, i, j, 2);
 			++i;
 		}
 		++j;
 	}
-	get_result(filler);
 }
 
 static void	count_territory(t_filler *filler)
@@ -163,13 +138,11 @@ void	territory_control(t_filler *filler)
 
 	j = 0;
 	clean(filler);
-	str_array_cpy(filler->territory_o, filler->territory_r);
-	str_array_cpy(filler->territory_x, filler->territory_r);
 	get_territory(filler);
 	count_territory(filler);
 	filler->nbr_r = (filler->p == 'o')
 		? ((double)filler->nbr_o / (double)filler->nbr_x)
 		: ((double)filler->nbr_x / (double)filler->nbr_o);
-	filler->nbr_r *= 100;
+	filler->nbr_r *= 100000;
 	filler->ratio = filler->nbr_r;
 }

@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:44 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/16 15:58:55 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/16 18:19:54 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int			backtrack(t_filler *filler)
 	filler->cy = 0;
 	filler->max_ratio = 0;
 	filler->board_tmp = str_array_dup(filler->board, 0);
-	filler->territory_o = str_array_dup(filler->board_tmp, 0);
-	filler->territory_x = str_array_dup(filler->board_tmp, 0);
 	filler->territory_r = str_array_dup(filler->board_tmp, 0);
 	while (x < filler->x)
 	{
@@ -50,9 +48,5 @@ int			backtrack(t_filler *filler)
 		}
 		++x;
 	}
-	str_array_del(&filler->territory_o);
-	str_array_del(&filler->territory_x);
-	str_array_del(&filler->territory_r);
-	str_array_del(&filler->board_tmp);
 	return (!fail);
 }
