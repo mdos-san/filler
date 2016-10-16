@@ -6,8 +6,8 @@
 
 typedef struct	s_pnt
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 }				t_pnt;
 
 typedef struct	s_filler
@@ -40,7 +40,6 @@ t_filler	filler_init(void);
 void		filler_start(t_filler *filler);
 int			backtrack(t_filler *filler);
 int			check(t_filler *filler, int x, int y);
-int 		find_by_distance(t_filler *filler, int depth);
 void		territory_control(t_filler *filler);
 void		put(t_filler *filler, int x, int y);
 
