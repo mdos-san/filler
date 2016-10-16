@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/16 18:26:47 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/16 19:53:45 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ static void	control(t_filler *filler, int i, int j, char nb)
 					{
 						a = filler->territory_r[ry][rx];
 						if (a == '.')
-						{
 							filler->territory_r[ry][rx] = nb + 48;
-						}
 						else if (a == c || a == lc)
 							stop = 1;
 						else if (a != nb + 48)

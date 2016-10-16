@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:44 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/16 19:02:46 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/16 19:59:47 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			backtrack(t_filler *filler)
 				put(filler, x, y);
 				str_array_cpy(filler->territory_r, filler->board_tmp);
 				territory_control(filler);
-				if (filler->ratio > filler->max_ratio)
+				if (filler->ratio >= filler->max_ratio)
 				{
 					fail = 0;
 					filler->cx = x;
