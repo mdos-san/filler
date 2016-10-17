@@ -45,7 +45,7 @@ typedef struct	s_filler
 	t_pnt		en_start;
 	char		done;	
 	t_list		*sol;
-	int			lst_max;
+	double		lst_max;
 	int			lst_useless;
 	int			min_en;
 }				t_filler;

@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/17 17:36:20 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/17 18:05:30 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	filler_start(t_filler *filler)
 			exit = backtrack(filler);
 			lst_max(filler);
 			ft_putstr_fd("max: ", 2);
-			ft_putnbr_fd(filler->lst_max, 2);
+			ft_putnbr_fd(filler->lst_max * 10000, 2);
 			ft_putstr_fd("\n", 2);
 			ft_putstr_fd("nbr: ", 2);
 			ft_putnbr_fd(lst_count_max(filler), 2);

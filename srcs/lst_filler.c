@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 15:30:41 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/17 16:01:46 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/17 18:05:38 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	lst_max(t_filler *filler)
 {
-	int			max;
+	double		max;
 	t_list		*lst;
 	t_solution	s;
 
@@ -31,7 +31,7 @@ void	lst_max(t_filler *filler)
 
 int		lst_count_max(t_filler *filler)
 {
-	int			nbr;
+	double		nbr;
 	t_list		*lst;
 	t_solution	s;
 
@@ -48,7 +48,7 @@ int		lst_count_max(t_filler *filler)
 
 int		lst_count_useless(t_filler *filler)
 {
-	int			nbr;
+	double		nbr;
 	t_list		*lst;
 	t_solution	s;
 
