@@ -45,7 +45,9 @@ typedef struct	s_filler
 	int			max_ratio;
 	t_pnt		en_start;
 	char		done;	
-	t_list		sol;
+	t_list		*sol;
+	int			lst_max;
+	int			lst_useless;
 }				t_filler;
 
 t_filler	filler_init(void);
@@ -54,5 +56,8 @@ int			backtrack(t_filler *filler);
 int			check(t_filler *filler, int x, int y);
 void		territory_control(t_filler *filler);
 void		put(t_filler *filler, int x, int y);
+void		lst_max(t_filler *filler);
+int			lst_count_max(t_filler *filler);
+int			lst_count_useless(t_filler *filler);
 
 #endif

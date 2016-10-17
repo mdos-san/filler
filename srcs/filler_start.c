@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/16 18:20:08 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/17 16:02:25 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,16 @@ void	filler_start(t_filler *filler)
 		{
 			get_piece(filler);
 			exit = backtrack(filler);
+			lst_max(filler);
+			ft_putstr_fd("max: ", 2);
+			ft_putnbr_fd(filler->lst_max, 2);
+			ft_putstr_fd("\n", 2);
+			ft_putstr_fd("nbr: ", 2);
+			ft_putnbr_fd(lst_count_max(filler), 2);
+			ft_putstr_fd("\n", 2);
+			ft_putstr_fd("useless: ", 2);
+			ft_putnbr_fd(lst_count_useless(filler), 2);
+			ft_putstr_fd("\n\n", 2);
 			str1 = ft_strjoin(ft_itoa(filler->cy), " ");
 			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
 			str3 = ft_strjoin(str2, "\n");
