@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/17 18:28:59 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/17 19:40:42 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,74 @@ static void	control(t_filler *filler, int i, int j, char nb)
 	}
 }
 
+static void	find_nearest(t_filler *filler, int i, int j)
+{
+	int		x;
+	int		y;
+	int		rx;
+	int		ry;
+	char	a;
+	char	o;
+	char	stop;
+	int		depth;
+
+	stop = 0;
+	depth = 1;
+	o = 0;
+	while (stop == 0)
+	{
+		y = -depth;
+		while (y <= depth && !stop)
+		{
+			x = -depth;
+			ry = j + y;
+			while (x <= depth && !stop)
+			{
+				if (x == -depth || x == depth || y == -depth || y == depth)
+				{
+					if (rx >= 0 && ry >= 0 && rx < filler->x && ry < filler->y)
+					{
+						a = filler->territory_r[ry][rx];
+						if (a == '1')
+						{
+							filler->territory_r[j][i] = '1';
+							stop = 1;
+							o = 1;
+						}
+						if (a == '2')
+						{
+							filler->territory_r[j][i] = (o) ? ' ' : '2';
+							stop = 1;
+						}
+					}
+				}
+				++x;
+			}
+			++y;
+		}
+		++depth;
+	}
+}
+
+static void	get_empty(t_filler *filler)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < filler->y)
+	{
+		x = 0;
+		while (x < filler->x)
+		{
+			if (filler->territory_r[y][x] == '.')
+				filler->territory_r[y][x] = (filler->p == 'o') ? '2' : '1';
+			++x;
+		}
+		++y;
+	}
+}
+
 static void	get_territory(t_filler *filler)
 {
 	int		i;
@@ -85,6 +153,7 @@ static void	get_territory(t_filler *filler)
 		}
 		++j;
 	}
+	get_empty(filler);
 }
 
 static void	count_territory(t_filler *filler)
