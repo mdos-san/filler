@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/17 18:09:06 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/17 18:28:59 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ static void	control(t_filler *filler, int i, int j, char nb)
 	char	lc;
 	char	stop;
 	int		depth;
+	int		enb;
 
 	stop = 0;
 	depth = 1;
 	c = (nb == 1) ? 'x' : 'o';
+	enb = (nb == 1) ? 2 : 1;
 	lc = c - 32;
 	while (stop == 0)
 	{
@@ -47,8 +49,8 @@ static void	control(t_filler *filler, int i, int j, char nb)
 							filler->territory_r[ry][rx] = nb + 48;
 						else if (a == c || a == lc)
 							stop = 1;
-						else if (a != nb + 48)
-							filler->territory_r[ry][rx] = '.';
+						else if (a == enb + 48)
+							filler->territory_r[ry][rx] = ' ';
 					}
 				}
 				++x;
@@ -114,8 +116,10 @@ void	territory_control(t_filler *filler)
 {
 	int	i;
 	int	j;
+	int	k;
 
 	j = 0;
+	k = 0;
 	get_territory(filler);
 	count_territory(filler);
 	filler->nbr_r = (filler->p == 'o')
