@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/15 19:17:28 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/16 18:20:08 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	find_en_start(t_filler *filler)
 		while (x < filler->x)
 		{
 			if (filler->board[y][x] != filler->p - 32
-				&& filler->board[y][x] != filler->p
-				&& filler->board[y][x] != '.')
+					&& filler->board[y][x] != filler->p
+					&& filler->board[y][x] != '.')
 			{
 				filler->en_start.x = x;
 				filler->en_start.y = y;
@@ -109,9 +109,11 @@ void	filler_start(t_filler *filler)
 			str3 = ft_strjoin(str2, "\n");
 			str_array_del(&filler->board);
 			str_array_del(&filler->piece);
+			ft_putstr(str3);
 			filler->board = str_array_new();
 			filler->piece = str_array_new();
-			ft_putstr(str3);
+			str_array_del(&filler->territory_r);
+			str_array_del(&filler->board_tmp);
 		}
 	}
 }
