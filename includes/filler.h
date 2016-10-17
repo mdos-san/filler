@@ -16,7 +16,7 @@ typedef struct	s_solution
 	int			y;
 	int			nbr_o;
 	int			nbr_x;
-	int			ratio;
+	double		ratio;
 }				t_solution;
 
 typedef struct	s_filler
@@ -33,6 +33,7 @@ typedef struct	s_filler
 	int			nbr_o;
 	int			nbr_x;
 	double		nbr_r;
+	double		max_ratio;
 	int			prev_o;
 	int			prev_x;
 	char		*piece_init;
@@ -41,13 +42,12 @@ typedef struct	s_filler
 	char		**piece;
 	int			cx;
 	int			cy;
-	int			ratio;
-	int			max_ratio;
 	t_pnt		en_start;
 	char		done;	
 	t_list		*sol;
 	int			lst_max;
 	int			lst_useless;
+	int			min_en;
 }				t_filler;
 
 t_filler	filler_init(void);
