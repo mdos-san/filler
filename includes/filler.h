@@ -53,6 +53,7 @@ typedef struct	s_filler
 t_filler	filler_init(void);
 void		filler_start(t_filler *filler);
 int			backtrack(t_filler *filler);
+int			find_by_distance(t_filler *filler, int depth);
 int			check(t_filler *filler, int x, int y);
 void		territory_control(t_filler *filler);
 void		put(t_filler *filler, int x, int y);
