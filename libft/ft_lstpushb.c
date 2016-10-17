@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler_init.c                                      :+:      :+:    :+:   */
+/*   ft_lstpushb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:40 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/17 14:54:11 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/10/17 15:08:11 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/17 15:12:07 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-t_filler	filler_init(void)
+void	ft_lstpushb(t_list *lst, void *content, size_t content_size)
 {
-	t_filler	new;
-
-	get_next_line(0, &new.init);
-	new.p = (new.init[10] == '1') ? 'o' : 'x';
-	new.board = str_array_new();
-	new.piece = str_array_new();
-	new.done = 0;
-	new.en_start.x = 0;
-	new.en_start.y = 0;
-	new.prev_o = 0;
-	new.prev_x = 0;
-	return (new);
+	if (lst->next != NULL)
+		ft_lstpushb(lst->next, content, content_size);
+	else
+		lst->next = ft_lstnew(content, content_size);
 }

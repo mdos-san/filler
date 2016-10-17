@@ -37,5 +37,6 @@ clean:
 fclean: clean
 	rm -rf $(NAME) $(LIBS) $(INCLUDES)
 	rm -rf filler.trace
+	rm -rf log
 
 re: fclean all
