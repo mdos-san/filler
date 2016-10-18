@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 13:58:04 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/16 15:49:02 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/18 16:36:32 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	put(t_filler *filler, int x, int y)
 		{
 			p = filler->piece[ty][tx];
 			if (p == '*')
-				filler->board_tmp[y + ty][x + tx] = filler->p;
+				filler->territory_tmp[y + ty][x + tx] = filler->p;
 			++ty;
 		}	
 		++tx;

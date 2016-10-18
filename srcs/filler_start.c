@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/18 15:56:35 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/18 16:53:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ static int	get_board(t_filler *filler)
 		{
 			find_en_start(filler);
 			filler->territory = str_array_dup(filler->board, 0);
+			filler->territory_tmp = str_array_dup(filler->board, 0);
 		}
 	}
 	return (ret);
@@ -106,20 +107,13 @@ void	filler_start(t_filler *filler)
 	{
 		if (get_board(filler) > 0)
 		{
+			get_new_piece(filler);
 			get_piece(filler);
 			exit = explore(filler);
 			str1 = ft_strjoin(ft_itoa(filler->cy), " ");
 			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
 			str3 = ft_strjoin(str2, "\n");
 			k = 0;
-			get_new_piece(filler);
-			territory_control(filler);
-			while (filler->territory[k])
-			{
-				ft_putstr_fd(filler->territory[k], 2);
-				ft_putstr_fd("\n", 2);
-				++k;
-			}
 			ft_putstr_fd("\n", 2);
 			ft_putstr(str3);
 			str_array_del(&filler->board);

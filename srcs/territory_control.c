@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/18 16:06:47 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/18 18:05:48 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ static void	control(t_filler *filler, int i, int j, char nb)
 					rx = i + x;
 					if (rx >= 0 && ry >= 0 && rx < filler->x && ry < filler->y)
 					{
-						a = filler->territory[ry][rx];
+						a = filler->territory_tmp[ry][rx];
 						if (a == '.')
-							filler->territory[ry][rx] = nb + 48;
+							filler->territory_tmp[ry][rx] = nb + 48;
 						else if (a == c || a == lc || a == enb + 2 + 48)
 							stop = 1;
 						else if (a == enb + 48)
-							filler->territory[ry][rx] = ' ';
+							filler->territory_tmp[ry][rx] = ' ';
 					}
 				}
 				++x;
@@ -72,8 +72,8 @@ static void	get_empty(t_filler *filler)
 		x = 0;
 		while (x < filler->x)
 		{
-			if (filler->territory[y][x] == '.')
-				filler->territory[y][x] = (filler->p == 'o') ? '2' : '1';
+			if (filler->territory_tmp[y][x] == '.')
+				filler->territory_tmp[y][x] = (filler->p == 'o') ? '2' : '1';
 			++x;
 		}
 		++y;
@@ -95,16 +95,16 @@ static void	get_territory(t_filler *filler)
 		i = 0;
 		while (i < filler->x)
 		{
-			a = filler->territory[j][i];
+			a = filler->territory_tmp[j][i];
 			if (a == 'o' || a == 'O')
 			{
 				control(filler, i, j, 1);
-				filler->territory[j][i] = '3';
+				filler->territory_tmp[j][i] = '3';
 			}
 			else if (a == 'x' || a == 'X')
 			{
 				control(filler, i, j, 2);
-				filler->territory[j][i] = '4';
+				filler->territory_tmp[j][i] = '4';
 			}
 			++i;
 		}
@@ -127,7 +127,7 @@ static void	count_territory(t_filler *filler)
 		x = 0;
 		while (x < filler->x)
 		{
-			a = filler->territory[y][x];
+			a = filler->territory_tmp[y][x];
 			if (a == '1' || a == '3')	
 				++filler->nbr_o;
 			if (a == '2' || a == '4')	
@@ -149,6 +149,6 @@ void	territory_control(t_filler *filler)
 	get_territory(filler);
 	count_territory(filler);
 	filler->nbr_r = (filler->p == 'o')
-		? ((double)filler->nbr_o / (double)filler->nbr_x)
-		: ((double)filler->nbr_x / (double)filler->nbr_o);
+		? ((double)filler->nbr_o)
+		: ((double)filler->nbr_x);
 }

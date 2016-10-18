@@ -29,8 +29,8 @@ typedef struct	s_filler
 	int			y;
 	char		**board;
 	char		**board_tmp;
-	char		**territory_r;
 	char		**territory;
+	char		**territory_tmp;
 	int			nbr_o;
 	int			nbr_x;
 	double		nbr_r;
