@@ -30,6 +30,7 @@ typedef struct	s_filler
 	char		**board;
 	char		**board_tmp;
 	char		**territory_r;
+	char		**territory;
 	int			nbr_o;
 	int			nbr_x;
 	double		nbr_r;
