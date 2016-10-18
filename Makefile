@@ -9,7 +9,7 @@ TMP_SRC_C	=	main.c\
 				filler_start.c\
 				check.c\
 				territory_control.c\
-				backtrack.c\
+				explore.c\
 				find_by_distance.c\
 				lst_filler.c
 SRC_C		=	$(TMP_SRC_C:%=srcs/%)
