@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/17 19:40:42 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/18 16:06:47 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,62 +44,13 @@ static void	control(t_filler *filler, int i, int j, char nb)
 					rx = i + x;
 					if (rx >= 0 && ry >= 0 && rx < filler->x && ry < filler->y)
 					{
-						a = filler->territory_r[ry][rx];
+						a = filler->territory[ry][rx];
 						if (a == '.')
-							filler->territory_r[ry][rx] = nb + 48;
-						else if (a == c || a == lc)
+							filler->territory[ry][rx] = nb + 48;
+						else if (a == c || a == lc || a == enb + 2 + 48)
 							stop = 1;
 						else if (a == enb + 48)
-							filler->territory_r[ry][rx] = ' ';
-					}
-				}
-				++x;
-			}
-			++y;
-		}
-		++depth;
-	}
-}
-
-static void	find_nearest(t_filler *filler, int i, int j)
-{
-	int		x;
-	int		y;
-	int		rx;
-	int		ry;
-	char	a;
-	char	o;
-	char	stop;
-	int		depth;
-
-	stop = 0;
-	depth = 1;
-	o = 0;
-	while (stop == 0)
-	{
-		y = -depth;
-		while (y <= depth && !stop)
-		{
-			x = -depth;
-			ry = j + y;
-			while (x <= depth && !stop)
-			{
-				if (x == -depth || x == depth || y == -depth || y == depth)
-				{
-					if (rx >= 0 && ry >= 0 && rx < filler->x && ry < filler->y)
-					{
-						a = filler->territory_r[ry][rx];
-						if (a == '1')
-						{
-							filler->territory_r[j][i] = '1';
-							stop = 1;
-							o = 1;
-						}
-						if (a == '2')
-						{
-							filler->territory_r[j][i] = (o) ? ' ' : '2';
-							stop = 1;
-						}
+							filler->territory[ry][rx] = ' ';
 					}
 				}
 				++x;
@@ -121,8 +72,8 @@ static void	get_empty(t_filler *filler)
 		x = 0;
 		while (x < filler->x)
 		{
-			if (filler->territory_r[y][x] == '.')
-				filler->territory_r[y][x] = (filler->p == 'o') ? '2' : '1';
+			if (filler->territory[y][x] == '.')
+				filler->territory[y][x] = (filler->p == 'o') ? '2' : '1';
 			++x;
 		}
 		++y;
@@ -144,11 +95,17 @@ static void	get_territory(t_filler *filler)
 		i = 0;
 		while (i < filler->x)
 		{
-			a = filler->territory_r[j][i];
+			a = filler->territory[j][i];
 			if (a == 'o' || a == 'O')
+			{
 				control(filler, i, j, 1);
+				filler->territory[j][i] = '3';
+			}
 			else if (a == 'x' || a == 'X')
+			{
 				control(filler, i, j, 2);
+				filler->territory[j][i] = '4';
+			}
 			++i;
 		}
 		++j;
@@ -170,10 +127,10 @@ static void	count_territory(t_filler *filler)
 		x = 0;
 		while (x < filler->x)
 		{
-			a = filler->territory_r[y][x];
-			if (a == '1' || a == 'o' || a == 'O')	
+			a = filler->territory[y][x];
+			if (a == '1' || a == '3')	
 				++filler->nbr_o;
-			if (a == '2' || a == 'x' || a == 'X')	
+			if (a == '2' || a == '4')	
 				++filler->nbr_x;
 			++x;
 		}

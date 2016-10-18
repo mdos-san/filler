@@ -61,5 +61,6 @@ void		put(t_filler *filler, int x, int y);
 void		lst_max(t_filler *filler);
 int			lst_count_max(t_filler *filler);
 int			lst_count_useless(t_filler *filler);
+void		get_new_piece(t_filler *filler);
 
 #endif

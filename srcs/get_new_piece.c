@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   explore.c                                          :+:      :+:    :+:   */
+/*   get_new_piece.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/18 15:19:51 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/18 16:07:39 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/10/18 15:48:09 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/18 16:05:57 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int			explore(t_filler *filler)
+void	get_new_piece(t_filler *filler)
 {
 	int	x;
 	int	y;
-	int	fail;
-	int	en;
-	t_solution s;
 
-	x = 0;
-	fail = 1;
-	filler->cx = 0;
-	filler->cy = 0;
-	while (x < filler->x)
+	y = 0;
+	while (y < filler->y)
 	{
-		y = 0;
-		while (y < filler->y)
+		x = 0;
+		while (x < filler->x)
 		{
-			if (check(filler, x, y))
-			{
-				fail = 0;
-				filler->cx = x;
-				filler->cy = y;
-			}
-			++y;
+			if (filler->board[y][x] == 'O' && filler->territory[y][x] != '3')
+				filler->territory[y][x] = 'o';
+			if (filler->board[y][x] == 'X' && filler->territory[y][x] != '4')
+				filler->territory[y][x] = 'x';
+			if (filler->territory[y][x] == ' ')
+				filler->territory[y][x] = '.';
+			++x;
 		}
-		++x;
+		++y;
 	}
-	return (!fail);
 }

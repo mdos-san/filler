@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/18 15:31:18 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/18 15:56:35 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	filler_start(t_filler *filler)
 	char	*str2;
 	char	*str3;
 	char	exit;
+	int		k;
 
 	exit = 1;
 	while (exit)
@@ -110,7 +111,9 @@ void	filler_start(t_filler *filler)
 			str1 = ft_strjoin(ft_itoa(filler->cy), " ");
 			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
 			str3 = ft_strjoin(str2, "\n");
-			int	k = 0;
+			k = 0;
+			get_new_piece(filler);
+			territory_control(filler);
 			while (filler->territory[k])
 			{
 				ft_putstr_fd(filler->territory[k], 2);
@@ -118,7 +121,6 @@ void	filler_start(t_filler *filler)
 				++k;
 			}
 			ft_putstr_fd("\n", 2);
-
 			ft_putstr(str3);
 			str_array_del(&filler->board);
 			filler->board = str_array_new();
