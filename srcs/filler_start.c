@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/17 18:42:58 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/18 16:53:36 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,11 @@ static int	get_board(t_filler *filler)
 			++i;
 		}
 		if (!filler->done)
+		{
 			find_en_start(filler);
+			filler->territory = str_array_dup(filler->board, 0);
+			filler->territory_tmp = str_array_dup(filler->board, 0);
+		}
 	}
 	return (ret);
 }
@@ -96,43 +100,25 @@ void	filler_start(t_filler *filler)
 	char	*str2;
 	char	*str3;
 	char	exit;
-	int		k = 0;
+	int		k;
 
 	exit = 1;
 	while (exit)
 	{
 		if (get_board(filler) > 0)
 		{
-			k = 0;
+			get_new_piece(filler);
 			get_piece(filler);
-			exit = backtrack(filler);
-			lst_max(filler);
-			ft_putstr_fd("max: ", 2);
-			ft_putnbr_fd(filler->lst_max * 10000, 2);
-			ft_putstr_fd("\n", 2);
-			ft_putstr_fd("nbr: ", 2);
-			ft_putnbr_fd(lst_count_max(filler), 2);
-			ft_putstr_fd("\n", 2);
-			ft_putstr_fd("useless: ", 2);
-			ft_putnbr_fd(lst_count_useless(filler), 2);
-			ft_putstr_fd("\n", 2);
-			while (filler->territory_r[k])
-			{
-				ft_putstr_fd(filler->territory_r[k], 2);
-				ft_putstr_fd("\n", 2);
-				++k;
-			}
-			ft_putstr_fd("\n", 2);
+			exit = explore(filler);
 			str1 = ft_strjoin(ft_itoa(filler->cy), " ");
 			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
 			str3 = ft_strjoin(str2, "\n");
-			str_array_del(&filler->board);
-			str_array_del(&filler->piece);
+			k = 0;
+			ft_putstr_fd("\n", 2);
 			ft_putstr(str3);
+			str_array_del(&filler->board);
 			filler->board = str_array_new();
 			filler->piece = str_array_new();
-			str_array_del(&filler->territory_r);
-			str_array_del(&filler->board_tmp);
 		}
 	}
 }

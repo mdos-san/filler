@@ -29,7 +29,8 @@ typedef struct	s_filler
 	int			y;
 	char		**board;
 	char		**board_tmp;
-	char		**territory_r;
+	char		**territory;
+	char		**territory_tmp;
 	int			nbr_o;
 	int			nbr_x;
 	double		nbr_r;
@@ -52,7 +53,7 @@ typedef struct	s_filler
 
 t_filler	filler_init(void);
 void		filler_start(t_filler *filler);
-int			backtrack(t_filler *filler);
+int			explore(t_filler *filler);
 int			find_by_distance(t_filler *filler, int depth);
 int			check(t_filler *filler, int x, int y);
 void		territory_control(t_filler *filler);
@@ -60,5 +61,6 @@ void		put(t_filler *filler, int x, int y);
 void		lst_max(t_filler *filler);
 int			lst_count_max(t_filler *filler);
 int			lst_count_useless(t_filler *filler);
+void		get_new_piece(t_filler *filler);
 
 #endif
