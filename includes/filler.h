@@ -49,6 +49,7 @@ typedef struct	s_filler
 	double		lst_max;
 	int			lst_useless;
 	int			min_en;
+	int			counter;
 }				t_filler;
 
 t_filler	filler_init(void);

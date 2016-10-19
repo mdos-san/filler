@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:40 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/18 15:31:26 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/19 18:08:17 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ t_filler	filler_init(void)
 	new.prev_o = 0;
 	new.prev_x = 0;
 	new.sol = NULL;
+	new.counter = 0;
 	return (new);
 }

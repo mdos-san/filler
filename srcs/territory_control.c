@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/19 16:50:52 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/19 19:33:04 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static void	get_empty(t_filler *filler)
 		x = 0;
 		while (x < filler->x)
 		{
-			if (filler->territory_tmp[y][x] == '.')
-				filler->territory_tmp[y][x] = (filler->p == 'o') ? '2' : '1';
+			if (filler->territory_tmp[y][x] == ' ')
+				filler->territory_tmp[y][x] = '.';
 			++x;
 		}
 		++y;
@@ -110,7 +110,7 @@ static void	get_territory(t_filler *filler)
 		}
 		++j;
 	}
-	//get_empty(filler);
+	get_empty(filler);
 }
 
 static void	count_territory(t_filler *filler)
