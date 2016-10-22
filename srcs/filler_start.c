@@ -6,37 +6,11 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:43:55 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 07:46:55 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-static void	find_en_start(t_filler *filler)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (y < filler->y)
-	{
-		x = 0;
-		while (x < filler->x)
-		{
-			if (filler->board[y][x] != filler->p - 32
-					&& filler->board[y][x] != filler->p
-					&& filler->board[y][x] != '.')
-			{
-				filler->en_start.x = x;
-				filler->en_start.y = y;
-			}
-			++x;
-		}
-		++y;
-	}
-	filler->done = 1;
-}
 
 static void	get_piece(t_filler *filler)
 {
@@ -60,6 +34,16 @@ static void	get_piece(t_filler *filler)
 	}
 }
 
+static void	territory_init(t_filler *filler)
+{
+	if (!filler->done)
+	{
+		filler->territory = str_array_dup(filler->board, 0);
+		filler->territory_tmp = str_array_dup(filler->board, 0);
+		filler->done = 1;
+	}
+}
+
 static int	get_board(t_filler *filler)
 {
 	int		i;
@@ -80,16 +64,10 @@ static int	get_board(t_filler *filler)
 		while (i < filler->y + 1)
 		{
 			get_next_line(0, &buf);
-			if (i > 0)
-				str_array_add(&filler->board, buf + 4);
+			(i > 0) ? str_array_add(&filler->board, buf + 4) : (void)0;
 			++i;
 		}
-		if (!filler->done)
-		{
-			find_en_start(filler);
-			filler->territory = str_array_dup(filler->board, 0);
-			filler->territory_tmp = str_array_dup(filler->board, 0);
-		}
+		territory_init(filler);
 	}
 	return (ret);
 }

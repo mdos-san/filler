@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 13:58:04 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:40:52 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 07:40:08 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,26 @@ int		check(t_filler *filler, int x, int y)
 	int		connected;
 	char	c;
 	char	p;
-	int		r_x;
-	int		r_y;
 
 	tx = 0;
 	connected = 0;
 	while (tx < filler->px && tx + x < filler->x)
 	{
 		ty = 0;
-		r_x = tx + x;
-		r_y = y;
-		while (ty < filler->py && r_y < filler->y)
+		while (ty < filler->py && ty + y < filler->y)
 		{
-			c = filler->board[r_y][r_x];
+			c = filler->board[ty + y][tx + x];
 			p = filler->piece[ty][tx];
 			if ((c == filler->p || c == filler->p - 32) && p == '*')
 				++connected;
 			else if (c != '.' && p == '*')
 				return (0);
 			++ty;
-			r_y = ty + y;
 		}
 		++tx;
 	}
-	if (connected == 1 && x + filler->px - 1 < filler->x
-		&& y + filler->py - 1 < filler->y)
-		return (1);
-	else
-		return (0);
+	return ((connected == 1 && x + filler->px - 1 < filler->x
+		&& y + filler->py - 1 < filler->y) ? 1 : 0);
 }
 
 void	put(t_filler *filler, int x, int y)
@@ -65,7 +57,7 @@ void	put(t_filler *filler, int x, int y)
 			if (p == '*')
 				filler->territory_tmp[y + ty][x + tx] = filler->p;
 			++ty;
-		}	
+		}
 		++tx;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:51:32 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 07:35:55 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,12 @@ static void	get_territory(t_filler *filler)
 	int		i;
 	int		j;
 	char	a;
-	char	stop;
 
-	j = 0;
-	stop = 0;
-	while (j < filler->y)
+	j = -1;
+	while (++j < filler->y)
 	{
-		i = 0;
-		while (i < filler->x)
+		i = -1;
+		while (++i < filler->x)
 		{
 			a = filler->territory_tmp[j][i];
 			if (a == 'o' || a == 'O')
@@ -105,9 +103,7 @@ static void	get_territory(t_filler *filler)
 				control(filler, i, j, 2);
 				filler->territory_tmp[j][i] = '4';
 			}
-			++i;
 		}
-		++j;
 	}
 	get_empty(filler);
 }

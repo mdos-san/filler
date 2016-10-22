@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 01:46:30 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:47:27 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 07:47:50 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct	s_filler
 t_filler		filler_init(void);
 void			filler_start(t_filler *filler);
 int				explore(t_filler *filler);
-int				find_by_distance(t_filler *filler, int depth);
 int				check(t_filler *filler, int x, int y);
 void			territory_control(t_filler *filler);
 void			put(t_filler *filler, int x, int y);
