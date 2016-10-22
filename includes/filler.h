@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 01:46:30 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 07:47:50 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 08:05:22 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct	s_filler
 	int			lst_useless;
 	int			min_en;
 	int			counter;
+	char		debug;
 }				t_filler;
 
 t_filler		filler_init(void);
