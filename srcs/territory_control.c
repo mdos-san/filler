@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/19 19:33:04 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 01:51:32 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ static void	get_territory(t_filler *filler)
 {
 	int		i;
 	int		j;
-	char	c;
 	char	a;
 	char	stop;
 
@@ -115,8 +114,8 @@ static void	get_territory(t_filler *filler)
 
 static void	count_territory(t_filler *filler)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	char	a;
 
 	y = 0;
@@ -128,9 +127,9 @@ static void	count_territory(t_filler *filler)
 		while (x < filler->x)
 		{
 			a = filler->territory_tmp[y][x];
-			if (a == '1' || a == '3')	
+			if (a == '1' || a == '3')
 				++filler->nbr_o;
-			if (a == '2' || a == '4')	
+			if (a == '2' || a == '4')
 				++filler->nbr_x;
 			++x;
 		}
@@ -138,14 +137,8 @@ static void	count_territory(t_filler *filler)
 	}
 }
 
-void	territory_control(t_filler *filler)
+void		territory_control(t_filler *filler)
 {
-	int	i;
-	int	j;
-	int	k;
-
-	j = 0;
-	k = 0;
 	get_territory(filler);
 	count_territory(filler);
 	filler->nbr_r = (filler->p == 'o')

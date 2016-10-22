@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/19 18:52:25 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 01:43:55 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	get_board(t_filler *filler)
 	return (ret);
 }
 
-void	filler_start(t_filler *filler)
+void		filler_start(t_filler *filler)
 {
 	char	*str1;
 	char	*str2;

@@ -6,13 +6,13 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 13:58:04 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/18 16:36:32 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/10/22 01:40:52 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	check(t_filler *filler, int x, int y)
+int		check(t_filler *filler, int x, int y)
 {
 	int		tx;
 	int		ty;
@@ -39,10 +39,11 @@ int	check(t_filler *filler, int x, int y)
 				return (0);
 			++ty;
 			r_y = ty + y;
-		}	
+		}
 		++tx;
 	}
-	if (connected == 1 && x + filler->px - 1 < filler->x && y + filler->py - 1 < filler->y)
+	if (connected == 1 && x + filler->px - 1 < filler->x
+		&& y + filler->py - 1 < filler->y)
 		return (1);
 	else
 		return (0);
