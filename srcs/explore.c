@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/18 15:19:51 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 08:04:57 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/11/30 18:32:44 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int			explore(t_filler *filler)
 		}
 		++x;
 	}
-	str_array_cpy(filler->territory, filler->territory_tmp);
+	if (filler->x * filler->y > 50 * 50)
+		str_array_cpy(filler->territory, filler->territory_tmp);
 	if (filler->debug)
 		debug(filler);
 	return (!fail);

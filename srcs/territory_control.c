@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 07:35:55 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/11/30 18:37:52 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,25 @@
 
 static void	control(t_filler *filler, int i, int j, char nb)
 {
-	int		x;
-	int		y;
-	int		rx;
-	int		ry;
-	char	a;
-	char	c;
-	char	lc;
-	char	stop;
-	int		depth;
-	int		enb;
+	t_control	c;
 
-	stop = 0;
-	depth = 1;
-	c = (nb == 1) ? 'x' : 'o';
-	enb = (nb == 1) ? 2 : 1;
-	lc = c - 32;
-	while (stop == 0)
+	c.stop = 0;
+	c.depth = 1;
+	c.c = (nb == 1) ? 'x' : 'o';
+	c.enb = (nb == 1) ? 2 : 1;
+	c.lc = c.c - 32;
+	while (c.stop == 0)
 	{
-		y = -depth;
-		while (y <= depth && !stop)
+		c.y = -c.depth;
+		while (c.y <= c.depth && !c.stop)
 		{
-			x = -depth;
-			ry = j + y;
-			while (x <= depth && !stop)
-			{
-				if (x == -depth || x == depth || y == -depth || y == depth)
-				{
-					rx = i + x;
-					if (rx >= 0 && ry >= 0 && rx < filler->x && ry < filler->y)
-					{
-						a = filler->territory_tmp[ry][rx];
-						if (a == '.')
-							filler->territory_tmp[ry][rx] = nb + 48;
-						else if (a == c || a == lc || a == enb + 2 + 48)
-							stop = 1;
-						else if (a == enb + 48)
-							filler->territory_tmp[ry][rx] = ' ';
-					}
-				}
-				++x;
-			}
-			++y;
+			c.x = -c.depth;
+			c.ry = j + c.y;
+			while (c.x <= c.depth && !c.stop)
+				ctl(filler, i, nb, &c);
+			++c.y;
 		}
-		++depth;
+		++c.depth;
 	}
 }
 

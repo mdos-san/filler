@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 01:46:30 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 08:05:22 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/11/30 18:38:17 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ typedef struct	s_solution
 	int			nbr_x;
 	double		ratio;
 }				t_solution;
+
+typedef struct	s_control
+{
+	int			x;
+	int			y;
+	int			rx;
+	int			ry;
+	char		a;
+	char		c;
+	char		lc;
+	char		stop;
+	int			depth;
+	int			enb;
+}				t_control;
 
 typedef struct	s_filler
 {
@@ -75,5 +89,6 @@ void			lst_max(t_filler *filler);
 int				lst_count_max(t_filler *filler);
 int				lst_count_useless(t_filler *filler);
 void			get_new_piece(t_filler *filler);
+void			ctl(t_filler *filler, int i, char nb, t_control *c);
 
 #endif
