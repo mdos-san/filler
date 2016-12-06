@@ -1,5 +1,5 @@
 NAME		=	mdos-san.filler
-FLAG		=	-Werror -Wextra -Wall -Wpedantic
+FLAG		=	-O3 -Werror -Wextra -Wall -Wpedantic
 
 INCLUDES	=	includes/libft.h
 
@@ -20,7 +20,9 @@ SRC_O		=	$(TMP_SRC_C:.c=.o)
 all: includes libs $(NAME)
 
 $(NAME): $(SRC_O)
-	gcc $(FLAG) -o $(NAME) $(SRC_O) $(LIBS) -I./includes
+	@echo "Linking $(NAME):\c"
+	@gcc $(FLAG) -o $(NAME) $(SRC_O) $(LIBS) -I./includes
+	@echo "[ok]"
 
 includes: $(INCLUDES)
 includes/libft.h:
@@ -33,7 +35,9 @@ libft.a:
 	make fclean -C libft
 
 %.o: srcs/%.c
-	gcc $(FLAG) -c $< -I./includes
+	@echo "Compiling $<:\c"
+	@gcc $(FLAG) -c $< -I./includes
+	@echo "[ok]"
 
 clean:
 	rm -rf $(SRC_O)

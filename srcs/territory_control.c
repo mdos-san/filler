@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 17:30:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/11/30 18:37:52 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/12/06 07:38:02 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static void	count_territory(t_filler *filler)
 			a = filler->territory_tmp[y][x];
 			if (a == '1' || a == '3')
 				++filler->nbr_o;
-			if (a == '2' || a == '4')
+			else if (a == '2' || a == '4')
 				++filler->nbr_x;
 			++x;
 		}
