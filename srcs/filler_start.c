@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 07:46:55 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/12/06 07:05:42 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void		filler_start(t_filler *filler)
 			str2 = ft_strjoin(str1, ft_itoa(filler->cx));
 			str3 = ft_strjoin(str2, "\n");
 			k = 0;
-			ft_putstr_fd("\n", 2);
+			(filler->debug) ? ft_putstr_fd("\n", 2) : (void)0;
 			ft_putstr(str3);
 			str_array_del(&filler->board);
 			filler->board = str_array_new();

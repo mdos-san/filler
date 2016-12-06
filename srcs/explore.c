@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/18 15:19:51 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/11/30 18:32:44 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/12/06 07:08:41 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static void	debug(t_filler *filler)
 	int	k;
 
 	k = 0;
-	while (filler->territory[k])
+	while (filler->territory_tmp[k])
 	{
-		ft_putstr_fd(filler->territory[k], 2);
+		ft_putstr_fd(filler->territory_tmp[k], 2);
 		ft_putstr_fd("\n", 2);
 		++k;
 	}
