@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2015/11/24 12:46:33 by mdos-san          #+#    #+#             */
+/*   Updated: 2015/12/03 15:51:41 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include <string.h>
 
-int	main(void)
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	t_filler	filler;
+	int		i;
+	size_t	i2;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	i = 0;
+	i2 = 0;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[i2] != '\0' && i2 < n)
+	{
+		s1[i] = s2[i2];
+		i++;
+		i2++;
+	}
+	s1[i] = '\0';
+	return (s1);
 }

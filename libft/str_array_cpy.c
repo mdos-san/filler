@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   str_array_cpy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/10/16 15:34:57 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/16 15:38:09 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int	main(void)
+void	str_array_cpy(char **dest, char **src)
 {
-	t_filler	filler;
+	int		index;
+	int		max;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	index = 0;
+	max = str_array_count(dest);
+	while (index < max)
+	{
+		ft_strcpy(dest[index], src[index]);
+		++index;
+	}
 }

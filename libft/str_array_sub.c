@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   str_array_sub.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/08/05 10:03:12 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/09/19 11:27:22 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int	main(void)
+void	str_array_sub(char ***stra, char *pattern)
 {
-	t_filler	filler;
+	int		i;
+	int		j;
+	int		line;
+	char	**new;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	i = 0;
+	j = 0;
+	line = str_array_count(*stra);
+	new = (char **)malloc(line * sizeof(char *));
+	while ((*stra)[i])
+	{
+		if (ft_strstart((*stra)[i], pattern) == 0)
+		{
+			new[j] = ft_strdup((*stra)[i]);
+			++j;
+		}
+		++i;
+	}
+	str_array_del(stra);
+	*stra = new;
 }

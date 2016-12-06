@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2015/11/25 16:10:23 by mdos-san          #+#    #+#             */
+/*   Updated: 2015/12/03 13:35:46 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
-
-int	main(void)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	t_filler	filler;
+	unsigned int	i;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	i = 0;
+	if (s && f)
+		while (*(s + i) != 0)
+		{
+			f(i, s + i);
+			i++;
+		}
 }

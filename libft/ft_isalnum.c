@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2015/11/24 15:35:06 by mdos-san          #+#    #+#             */
+/*   Updated: 2015/11/24 15:40:20 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_isalnum(int c)
 {
-	t_filler	filler;
-
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	if (ft_isalpha(c) == 1 || ft_isdigit(c) == 1)
+		return (1);
+	else
+		return (0);
 }

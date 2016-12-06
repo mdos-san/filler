@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2015/11/23 12:33:45 by mdos-san          #+#    #+#             */
+/*   Updated: 2015/12/03 15:20:44 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include <string.h>
 
-int	main(void)
+void	*ft_memset(void *b, int c, size_t n)
 {
-	t_filler	filler;
+	size_t	i;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	i = 0;
+	if (!b)
+		return (NULL);
+	while (i < n)
+	{
+		*(unsigned char *)(b + i) = (unsigned char)c;
+		i++;
+	}
+	return (b);
 }

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   str_array_new.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/08/05 13:16:13 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/09/19 11:27:17 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int	main(void)
+char	**str_array_new(void)
 {
-	t_filler	filler;
+	char	**new;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	new = (char**)malloc(sizeof(char *));
+	if (new == NULL)
+		return (NULL);
+	new[0] = NULL;
+	return (new);
 }

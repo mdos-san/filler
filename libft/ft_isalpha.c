@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2015/11/24 15:09:35 by mdos-san          #+#    #+#             */
+/*   Updated: 2015/12/03 16:23:17 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
-
-int	main(void)
+int	ft_isalpha(int c)
 {
-	t_filler	filler;
-
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	if (65 <= c && c <= 90)
+		return (1);
+	else if (97 <= c && c <= 122)
+		return (1);
+	else
+		return (0);
 }

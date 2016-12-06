@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2015/11/30 14:23:03 by mdos-san          #+#    #+#             */
+/*   Updated: 2015/11/30 14:53:06 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include <stdio.h>
+#include <string.h>
+#include "libft.h"
 
-int	main(void)
+void	ft_lstadd(t_list **lst, t_list *new)
 {
-	t_filler	filler;
-
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	new->next = (*lst);
+	(*lst) = new;
 }

@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2015/11/24 11:01:40 by mdos-san          #+#    #+#             */
+/*   Updated: 2015/12/03 15:41:41 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include <string.h>
 
-int	main(void)
+size_t	ft_strlen(const char *s)
 {
-	t_filler	filler;
+	size_t	i;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	i = 0;
+	if (!s)
+		return (0);
+	while (*(s + i) != '\0')
+		i++;
+	return (i);
 }

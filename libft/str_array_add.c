@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   str_array_add.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/08/05 10:02:42 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/09/19 11:26:09 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int	main(void)
+void	str_array_add(char ***array, char *str)
 {
-	t_filler	filler;
+	char	**new;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	new = str_array_dup(*array, 1);
+	str_array_del(array);
+	new[str_array_count(new)] = ft_strdup(str);
+	*array = new;
 }

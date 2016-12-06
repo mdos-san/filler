@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2015/11/24 11:44:03 by mdos-san          #+#    #+#             */
+/*   Updated: 2015/12/03 15:48:01 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include <string.h>
 
-int	main(void)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	t_filler	filler;
+	int	i;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	i = 0;
+	if (!dst || !src)
+		return (NULL);
+	while (*(src + i) != '\0')
+	{
+		*(dst + i) = *(src + i);
+		i++;
+	}
+	*(dst + i) = '\0';
+	return (dst);
 }

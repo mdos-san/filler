@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdos-san <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2015/11/25 16:31:29 by mdos-san          #+#    #+#             */
+/*   Updated: 2015/12/03 13:13:18 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
-
-int	main(void)
+int	ft_strequ(char const *s1, char const *s2)
 {
-	t_filler	filler;
+	int	i;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	i = 0;
+	if (!s1 || !s2)
+		return (0);
+	while (*(s1 + i) != 0)
+	{
+		if (*(s1 + i) != *(s2 + i))
+			return (0);
+		i++;
+	}
+	if (*(s1 + i) != *(s2 + i))
+		return (0);
+	return (1);
 }

@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   str_array_find.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/08/05 10:02:59 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/09/19 11:27:12 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int	main(void)
+char	*str_array_find(char **arr, char *pattern)
 {
-	t_filler	filler;
+	int	index;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	index = 0;
+	while (arr[index])
+	{
+		if (ft_strstart(arr[index], pattern))
+			return (arr[index]);
+		++index;
+	}
+	return (NULL);
 }

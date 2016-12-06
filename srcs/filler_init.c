@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   filler_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/13 16:26:23 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/10/22 01:45:43 by mdos-san         ###   ########.fr       */
+/*   Created: 2016/10/13 16:26:40 by mdos-san          #+#    #+#             */
+/*   Updated: 2016/10/22 08:05:09 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int	main(void)
+t_filler	filler_init(void)
 {
-	t_filler	filler;
+	t_filler	new;
 
-	filler = filler_init();
-	filler_start(&filler);
-	return (0);
+	get_next_line(0, &new.init);
+	new.p = (new.init[10] == '1') ? 'o' : 'x';
+	new.board = str_array_new();
+	new.piece = str_array_new();
+	new.done = 0;
+	new.en_start.x = 0;
+	new.en_start.y = 0;
+	new.prev_o = 0;
+	new.prev_x = 0;
+	new.sol = NULL;
+	new.counter = 0;
+	new.debug = 0;
+	return (new);
 }
