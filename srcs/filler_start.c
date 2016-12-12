@@ -6,7 +6,7 @@
 /*   By: mdos-san <mdos-san@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 16:26:28 by mdos-san          #+#    #+#             */
-/*   Updated: 2016/12/12 08:53:14 by mdos-san         ###   ########.fr       */
+/*   Updated: 2016/12/12 09:02:15 by mdos-san         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,17 @@ void			filler_start(t_filler *filler)
 	int	ex;
 
 	ex = 1;
-	while (ex)
+	while (ex > 0)
 	{
 		if (get_board(filler) > 0)
 		{
-			(filler->y == 0 || filler->x == 0) ? exit(0) : (void)0;
-			process(filler, &ex);
+			(filler->y == 0 || filler->x == 0) ? (ex = -1) : 0;
+			(ex > 0) ? process(filler, &ex) : (void)0;
 		}
 	}
-	str_array_del(&filler->board);
-	str_array_del(&filler->piece);
+	if (ex > -1)
+	{
+		str_array_del(&filler->board);
+		str_array_del(&filler->piece);
+	}
 }

@@ -1,5 +1,5 @@
 NAME		=	mdos-san.filler
-FLAG		=	-O3 -Werror -Wextra -Wall -Wpedantic
+FLAG		=	-Werror -Wextra -Wall -Wpedantic
 
 INCLUDES	=	includes/libft.h
 
